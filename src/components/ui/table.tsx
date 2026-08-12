@@ -6,7 +6,7 @@ const Table = React.forwardRef<HTMLTableElement, React.HTMLAttributes<HTMLTableE
     <div className="relative w-full overflow-x-auto">
       <table
         ref={ref}
-        className={cn('w-full caption-bottom border-collapse text-sm', className)}
+        className={cn('w-full caption-bottom border-collapse text-sm leading-relaxed', className)}
         {...props}
       />
     </div>
@@ -33,7 +33,7 @@ const TableRow = React.forwardRef<HTMLTableRowElement, React.HTMLAttributes<HTML
     <tr
       ref={ref}
       className={cn(
-        'border-b border-border/70 transition-colors last:border-0 data-[state=selected]:bg-accent/60',
+        'border-b border-border/70 transition-colors last:border-0 data-[state=selected]:bg-primary/8',
         className,
       )}
       {...props}
@@ -49,7 +49,7 @@ const TableHead = React.forwardRef<
   <th
     ref={ref}
     className={cn(
-      'h-10 whitespace-nowrap border-b border-border px-3 text-left align-middle text-[11px] font-semibold uppercase tracking-wider text-muted-foreground',
+      'h-12 whitespace-nowrap border-b border-border px-4 text-left align-middle text-[11px] font-semibold uppercase tracking-wider text-muted-foreground',
       className,
     )}
     {...props}
@@ -61,7 +61,7 @@ const TableCell = React.forwardRef<
   HTMLTableCellElement,
   React.TdHTMLAttributes<HTMLTableCellElement>
 >(({ className, ...props }, ref) => (
-  <td ref={ref} className={cn('px-3 py-2.5 align-middle', className)} {...props} />
+  <td ref={ref} className={cn('px-4 py-3.5 align-middle', className)} {...props} />
 ))
 TableCell.displayName = 'TableCell'
 

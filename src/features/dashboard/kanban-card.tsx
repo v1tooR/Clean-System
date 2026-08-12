@@ -30,7 +30,7 @@ export function KanbanCard({ order, onOpen, overlay }: KanbanCardProps) {
         transform: transform ? `translate3d(${transform.x}px, ${transform.y}px, 0)` : undefined,
       }}
       className={cn(
-        'group relative rounded-lg border border-border bg-card p-3 transition-shadow',
+        'group relative rounded-lg border border-border bg-card p-3 shadow-xs transition-[transform,border-color,box-shadow] hover:-translate-y-0.5 hover:border-primary/25 hover:shadow-md',
         isDragging && 'opacity-40',
         overlay && 'rotate-1 border-primary/50 shadow-lg',
       )}
@@ -41,7 +41,7 @@ export function KanbanCard({ order, onOpen, overlay }: KanbanCardProps) {
           {...listeners}
           {...attributes}
           aria-label={`Arrastar OS ${order.code}`}
-          className="mt-0.5 hidden cursor-grab touch-none rounded p-0.5 text-muted-foreground/50 transition-colors hover:text-foreground active:cursor-grabbing md:block"
+          className="mt-0.5 hidden cursor-grab touch-none rounded p-0.5 text-muted-foreground/50 transition-colors hover:bg-primary/10 hover:text-primary active:cursor-grabbing md:block"
         >
           <GripVertical className="size-3.5" />
         </button>

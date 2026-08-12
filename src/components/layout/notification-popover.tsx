@@ -79,7 +79,7 @@ export function NotificationPopover() {
                       setOpen(false)
                     }
                   }}
-                  className="flex w-full items-start gap-3 rounded-lg p-2.5 text-left transition-colors hover:bg-accent/60"
+                  className="flex w-full items-start gap-3 rounded-lg p-2.5 text-left transition-colors hover:bg-primary/7"
                 >
                   <span className={cn('mt-0.5 grid size-7 shrink-0 place-items-center rounded-full', meta.tone)}>
                     <Icon className="size-3.5" />

@@ -48,6 +48,9 @@ export function PeriodFilter({ preset, range, onChange, align = 'start' }: Perio
   const [open, setOpen] = React.useState(false)
   const [customFrom, setCustomFrom] = React.useState(format(range.from, 'yyyy-MM-dd'))
   const [customTo, setCustomTo] = React.useState(format(range.to, 'yyyy-MM-dd'))
+  const customFromId = React.useId()
+  const customToId = React.useId()
+  const customInvalid = !customFrom || !customTo || customFrom > customTo
 
   const label =
     preset === 'custom'
@@ -62,8 +65,16 @@ export function PeriodFilter({ preset, range, onChange, align = 'start' }: Perio
     setOpen(false)
   }
 
+  function handleOpenChange(nextOpen: boolean) {
+    if (nextOpen) {
+      setCustomFrom(format(range.from, 'yyyy-MM-dd'))
+      setCustomTo(format(range.to, 'yyyy-MM-dd'))
+    }
+    setOpen(nextOpen)
+  }
+
   return (
-    <Popover open={open} onOpenChange={setOpen}>
+    <Popover open={open} onOpenChange={handleOpenChange}>
       <PopoverTrigger asChild>
         <Button variant="outline" size="sm" className="gap-2 font-normal">
           <CalendarDays className="size-3.5 text-muted-foreground" />
@@ -71,7 +82,7 @@ export function PeriodFilter({ preset, range, onChange, align = 'start' }: Perio
           <ChevronDown className="size-3.5 text-muted-foreground" />
         </Button>
       </PopoverTrigger>
-      <PopoverContent align={align} className="w-64 p-2">
+      <PopoverContent align={align} className="w-[360px] max-w-[calc(100vw-1rem)] p-2.5">
         <div className="space-y-0.5">
           {presets.map((item) => (
             <button
@@ -82,7 +93,7 @@ export function PeriodFilter({ preset, range, onChange, align = 'start' }: Perio
                 setOpen(false)
               }}
               className={cn(
-                'flex w-full items-center justify-between rounded-md px-2.5 py-2 text-[13px] transition-colors hover:bg-accent',
+                'flex min-h-11 w-full items-center justify-between rounded-md px-3 py-2.5 text-[13px] transition-colors hover:bg-accent',
                 preset === item && 'bg-accent/60 font-medium',
               )}
             >
@@ -98,21 +109,40 @@ export function PeriodFilter({ preset, range, onChange, align = 'start' }: Perio
           <Label className="text-[11px] uppercase tracking-wider text-muted-foreground">
             Período personalizado
           </Label>
-          <div className="flex items-center gap-2">
-            <Input
-              type="date"
-              value={customFrom}
-              onChange={(event) => setCustomFrom(event.target.value)}
-              className="h-8 text-[12px]"
-            />
-            <Input
-              type="date"
-              value={customTo}
-              onChange={(event) => setCustomTo(event.target.value)}
-              className="h-8 text-[12px]"
-            />
+          <div className="grid gap-2 sm:grid-cols-2">
+            <div className="min-w-0 space-y-1">
+              <Label htmlFor={customFromId} className="text-[10px] text-muted-foreground">
+                De
+              </Label>
+              <Input
+                id={customFromId}
+                type="date"
+                value={customFrom}
+                max={customTo}
+                onChange={(event) => setCustomFrom(event.target.value)}
+                className="min-w-0 px-2 text-[12px]"
+              />
+            </div>
+            <div className="min-w-0 space-y-1">
+              <Label htmlFor={customToId} className="text-[10px] text-muted-foreground">
+                At&eacute;
+              </Label>
+              <Input
+                id={customToId}
+                type="date"
+                value={customTo}
+                min={customFrom}
+                onChange={(event) => setCustomTo(event.target.value)}
+                className="min-w-0 px-2 text-[12px]"
+              />
+            </div>
           </div>
-          <Button size="sm" className="w-full" onClick={applyCustom}>
+          {customFrom && customTo && customFrom > customTo ? (
+            <p className="rounded-md bg-warning/10 px-3 py-2 text-[12px] font-medium text-warning" role="alert">
+              A data inicial deve ser anterior à data final.
+            </p>
+          ) : null}
+          <Button size="sm" className="w-full" onClick={applyCustom} disabled={customInvalid}>
             Aplicar período
           </Button>
         </div>
@@ -172,11 +202,11 @@ export function FilterSelect({ label, options, selected, onChange, icon }: Filte
                 key={option.value}
                 type="button"
                 onClick={() => toggle(option.value)}
-                className="flex w-full items-center gap-2.5 rounded-md px-2 py-2 text-left text-[13px] transition-colors hover:bg-accent"
+                className="flex min-h-11 w-full items-center gap-2.5 rounded-md px-3 py-2.5 text-left text-[13px] transition-colors hover:bg-accent"
               >
                 <span
                   className={cn(
-                    'grid size-4 shrink-0 place-items-center rounded-[5px] border transition-colors',
+                    'grid size-5 shrink-0 place-items-center rounded-[5px] border transition-colors',
                     checked ? 'border-primary bg-primary text-primary-foreground' : 'border-input',
                   )}
                 >
@@ -226,13 +256,13 @@ export function ActiveFilters({
           key={chip.id}
           type="button"
           onClick={chip.onRemove}
-          className="group inline-flex items-center gap-1.5 rounded-md border border-border bg-muted/50 py-1 pl-2 pr-1.5 text-[12px] text-muted-foreground transition-colors hover:border-destructive/40 hover:text-foreground"
+          className="group inline-flex min-h-10 items-center gap-1.5 rounded-md border border-border bg-muted/50 py-2 pl-3 pr-2 text-[12px] text-muted-foreground transition-colors hover:border-destructive/40 hover:text-foreground"
         >
           {chip.label}
           <X className="size-3 transition-colors group-hover:text-destructive" />
         </button>
       ))}
-      <Button variant="ghost" size="sm" className="h-7 px-2 text-[12px]" onClick={onClearAll}>
+      <Button variant="ghost" size="sm" className="px-3 text-[12px]" onClick={onClearAll}>
         Limpar tudo
       </Button>
     </div>

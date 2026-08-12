@@ -15,8 +15,18 @@ export default {
         Array.from({ length: 101 }, (_, index) => [index, String(index / 100)]),
       ),
       fontFamily: {
-        sans: ['Inter var', 'Inter', 'ui-sans-serif', 'system-ui', 'Segoe UI', 'sans-serif'],
+        sans: ['Urbanist', 'ui-sans-serif', 'system-ui', 'Segoe UI', 'sans-serif'],
         mono: ['ui-monospace', 'JetBrains Mono', 'SFMono-Regular', 'Menlo', 'monospace'],
+      },
+      fontSize: {
+        xs: ['var(--font-caption)', { lineHeight: '1.45' }],
+        sm: ['var(--font-body)', { lineHeight: '1.5' }],
+        base: ['var(--font-body)', { lineHeight: '1.5' }],
+        lg: ['var(--font-heading)', { lineHeight: '1.4' }],
+        xl: ['var(--font-title)', { lineHeight: '1.3' }],
+        '2xl': ['var(--font-title-lg)', { lineHeight: '1.25' }],
+        '3xl': ['var(--font-metric)', { lineHeight: '1.15' }],
+        '4xl': ['var(--font-metric-lg)', { lineHeight: '1.1' }],
       },
       colors: {
         border: 'hsl(var(--border))',
@@ -28,6 +38,12 @@ export default {
           DEFAULT: 'hsl(var(--primary))',
           foreground: 'hsl(var(--primary-foreground))',
           muted: 'hsl(var(--primary-muted))',
+        },
+        brand: {
+          deep: 'hsl(var(--brand-deep))',
+          cyan: 'hsl(var(--brand-cyan))',
+          sky: 'hsl(var(--brand-sky))',
+          ice: 'hsl(var(--brand-ice))',
         },
         secondary: {
           DEFAULT: 'hsl(var(--secondary))',

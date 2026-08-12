@@ -18,14 +18,54 @@ export interface DraftItem {
 }
 
 export const steps = [
-  { id: 'cliente', label: 'Cliente' },
-  { id: 'pecas', label: 'Peças' },
-  { id: 'servicos', label: 'Serviços' },
-  { id: 'resumo', label: 'Resumo' },
-  { id: 'pagamento', label: 'Pagamento' },
-  { id: 'nota', label: 'NFS-e' },
-  { id: 'comprovante', label: 'Comprovante' },
-  { id: 'fim', label: 'Conclusão' },
+  {
+    id: 'cliente',
+    label: 'Cliente',
+    group: 'Atendimento',
+    description: 'Identifique quem está deixando as peças',
+  },
+  {
+    id: 'pecas',
+    label: 'Peças',
+    group: 'Atendimento',
+    description: 'Registre todas as peças recebidas',
+  },
+  {
+    id: 'servicos',
+    label: 'Serviços',
+    group: 'Atendimento',
+    description: 'Defina o serviço de cada peça',
+  },
+  {
+    id: 'resumo',
+    label: 'Resumo',
+    group: 'Cobrança',
+    description: 'Confira itens, prazo e valores',
+  },
+  {
+    id: 'pagamento',
+    label: 'Pagamento',
+    group: 'Cobrança',
+    description: 'Escolha como o cliente será cobrado',
+  },
+  {
+    id: 'nota',
+    label: 'NFS-e',
+    group: 'Documentos',
+    description: 'Emita ou dispense a nota fiscal',
+  },
+  {
+    id: 'comprovante',
+    label: 'Comprovante',
+    group: 'Documentos',
+    description: 'Revise e entregue a via do cliente',
+  },
+  {
+    id: 'fim',
+    label: 'Conclusão',
+    group: 'Finalização',
+    description: 'Atendimento criado com sucesso',
+  },
 ] as const
 
 export type StepId = (typeof steps)[number]['id']

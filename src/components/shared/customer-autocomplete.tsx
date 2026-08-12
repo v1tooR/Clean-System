@@ -82,7 +82,7 @@ export function CustomerAutocomplete({
         onChange={(event) => setQuery(event.target.value)}
         onKeyDown={handleKeyDown}
         placeholder={placeholder}
-        className="h-12 w-full rounded-lg border border-input bg-background/40 pl-10 pr-4 text-[15px] shadow-xs transition-colors placeholder:text-muted-foreground/70 focus-visible:border-primary/60 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/25"
+        className="h-12 w-full rounded-lg border border-input bg-background/55 pl-10 pr-4 text-[15px] shadow-xs transition-[border-color,box-shadow,background-color] placeholder:text-muted-foreground/70 hover:border-primary/30 focus-visible:bg-background/80 focus-visible:border-primary/70 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/25"
       />
 
       <AnimatePresence>
@@ -104,7 +104,7 @@ export function CustomerAutocomplete({
                   onClick={() => onSelect(customer)}
                   className={cn(
                     'flex w-full items-center gap-3 rounded-md px-2.5 py-2.5 text-left transition-colors',
-                    highlight === index ? 'bg-accent' : 'hover:bg-accent/60',
+                    highlight === index ? 'bg-primary/10 text-primary' : 'hover:bg-primary/7',
                   )}
                 >
                   <span
@@ -141,7 +141,7 @@ export function CustomerAutocomplete({
               onClick={() => onCreateNew(query)}
               className={cn(
                 'mt-0.5 flex w-full items-center gap-3 rounded-md border-t border-border/70 px-2.5 py-2.5 text-left transition-colors',
-                highlight === results.length ? 'bg-accent' : 'hover:bg-accent/60',
+                highlight === results.length ? 'bg-primary/10' : 'hover:bg-primary/7',
               )}
             >
               <span className="grid size-8 shrink-0 place-items-center rounded-full bg-success/12 text-success">

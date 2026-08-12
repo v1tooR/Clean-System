@@ -63,10 +63,11 @@ export function MetricCard({
       type={onClick ? 'button' : undefined}
       onClick={onClick}
       className={cn(
-        'group relative w-full overflow-hidden rounded-lg border border-border bg-card p-4 text-left transition-colors',
-        onClick && 'hover:border-border/80 hover:bg-card-elevated focus-visible:ring-2 focus-visible:ring-ring/60',
+        'group relative w-full overflow-hidden rounded-lg border border-border bg-card p-4 text-left shadow-xs transition-[transform,border-color,background-color,box-shadow] duration-200',
+        onClick && 'hover:-translate-y-0.5 hover:border-primary/30 hover:bg-card-elevated hover:shadow-md focus-visible:ring-2 focus-visible:ring-ring/60',
       )}
     >
+      <span className="pointer-events-none absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-brand-sky/30 to-transparent opacity-0 transition-opacity group-hover:opacity-100" />
       <div className="flex items-start justify-between gap-3">
         <p className="text-[12px] font-medium uppercase tracking-wider text-muted-foreground">
           {label}
@@ -78,7 +79,7 @@ export function MetricCard({
 
       <motion.p
         key={value}
-        initial={{ opacity: 0, y: 4 }}
+        initial={{ opacity: 1, y: 4 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.2, ease: 'easeOut' }}
         className="tabular mt-3 text-[26px] font-semibold leading-none tracking-tight"

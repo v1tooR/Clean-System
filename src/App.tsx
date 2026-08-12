@@ -13,6 +13,7 @@ import { ReportsPage } from '@/features/reports/reports-page'
 import { SettingsPage } from '@/features/settings/settings-page'
 import { NotFoundPage } from '@/features/misc/not-found-page'
 import { RouteErrorPage } from '@/features/misc/route-error-page'
+import { useUIStore } from '@/store/ui-store'
 
 const router = createBrowserRouter([
   {
@@ -36,12 +37,14 @@ const router = createBrowserRouter([
 ])
 
 export function App() {
+  const theme = useUIStore((state) => state.theme)
+
   return (
     <>
       <RouterProvider router={router} />
       <Toaster
         position="bottom-right"
-        theme="dark"
+        theme={theme}
         richColors
         closeButton
         toastOptions={{

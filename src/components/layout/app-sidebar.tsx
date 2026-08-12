@@ -1,7 +1,7 @@
 import * as React from 'react'
 import { NavLink, useNavigate } from 'react-router-dom'
 import { motion } from 'framer-motion'
-import { ChevronsLeft, LogOut, PanelLeft, Plus, Settings, Sparkles } from 'lucide-react'
+import { ChevronsLeft, LogOut, PanelLeft, Plus, Settings } from 'lucide-react'
 import { toast } from 'sonner'
 import { navigation } from '@/config/navigation'
 import { useDataStore } from '@/store/data-store'
@@ -10,6 +10,7 @@ import { currentUser } from '@/data/system'
 import { Avatar, AvatarFallback, Separator } from '@/components/ui/misc'
 import { Button } from '@/components/ui/button'
 import { SimpleTooltip } from '@/components/ui/tooltip'
+import { BrandMark } from '@/components/shared/brand-mark'
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -54,24 +55,25 @@ export function AppSidebar({ variant = 'desktop', onNavigate }: AppSidebarProps)
     <aside
       className={cn(
         'flex h-full flex-col border-r border-sidebar-border bg-sidebar transition-[width] duration-200 ease-out',
-        variant === 'desktop' ? (collapsed ? 'w-[68px]' : 'w-[248px]') : 'w-full',
+        variant === 'desktop' ? (collapsed ? 'w-[76px]' : 'w-[272px]') : 'w-full',
       )}
     >
       {/* Marca */}
       <div
         className={cn(
-          'flex h-14 shrink-0 items-center gap-2.5 border-b border-sidebar-border px-4',
+          'flex h-16 shrink-0 items-center gap-2.5 border-b border-sidebar-border px-4',
           collapsed && 'justify-center px-0',
         )}
       >
-        <span className="grid size-8 shrink-0 place-items-center rounded-lg bg-primary text-primary-foreground shadow-sm">
-          <Sparkles className="size-4" />
-        </span>
+        <BrandMark title="AC Clean" className="size-9 drop-shadow-[0_0_12px_hsl(var(--primary)/0.18)]" />
         {!collapsed ? (
           <div className="min-w-0 flex-1">
-            <p className="truncate text-[13px] font-semibold leading-tight">Lavanderia Aurora</p>
-            <p className="truncate text-[11px] leading-tight text-muted-foreground">
-              Clean System · v1.0
+            <p className="truncate text-[15px] font-bold leading-tight tracking-tight">
+              <span className="text-primary">ac.</span>
+              <span className="text-foreground">clean</span>
+            </p>
+            <p className="truncate text-[10px] font-medium uppercase leading-tight tracking-[0.15em] text-sidebar-foreground/70">
+              Lavanderia · Gestão
             </p>
           </div>
         ) : null}
@@ -120,11 +122,11 @@ export function AppSidebar({ variant = 'desktop', onNavigate }: AppSidebarProps)
                         onClick={onNavigate}
                         className={({ isActive }) =>
                           cn(
-                            'group relative flex items-center gap-3 rounded-md px-2.5 py-2 text-[13px] font-medium transition-colors',
+                            'group relative flex min-h-11 items-center gap-3 rounded-md px-2.5 py-2.5 text-[13px] font-medium transition-colors',
                             collapsed && 'justify-center px-0',
                             isActive
-                              ? 'bg-sidebar-accent text-foreground'
-                              : 'text-sidebar-foreground hover:bg-sidebar-accent/60 hover:text-foreground',
+                              ? 'bg-primary/12 text-primary shadow-[inset_0_0_0_1px_hsl(var(--primary)/0.08)]'
+                              : 'text-sidebar-foreground hover:bg-primary/7 hover:text-foreground',
                           )
                         }
                       >
@@ -133,14 +135,14 @@ export function AppSidebar({ variant = 'desktop', onNavigate }: AppSidebarProps)
                             {isActive ? (
                               <motion.span
                                 layoutId="sidebar-active"
-                                className="absolute inset-y-1 left-0 w-[3px] rounded-r bg-primary"
+                                className="absolute inset-y-1 left-0 w-[3px] rounded-r bg-gradient-to-b from-brand-sky to-primary shadow-[0_0_10px_hsl(var(--primary)/0.45)]"
                                 transition={{ type: 'spring', stiffness: 400, damping: 32 }}
                               />
                             ) : null}
                             <Icon
                               className={cn(
                                 'size-4 shrink-0 transition-colors',
-                                isActive ? 'text-primary' : 'text-muted-foreground group-hover:text-foreground',
+                                isActive ? 'text-primary' : 'text-muted-foreground group-hover:text-primary',
                               )}
                             />
                             {!collapsed ? (
@@ -152,7 +154,7 @@ export function AppSidebar({ variant = 'desktop', onNavigate }: AppSidebarProps)
                                       'tabular rounded px-1.5 py-0.5 text-[10px] font-semibold',
                                       item.badge === 'invoiceErrors'
                                         ? 'bg-destructive/15 text-destructive'
-                                        : 'bg-muted text-muted-foreground',
+                                        : 'bg-primary/10 text-primary',
                                     )}
                                   >
                                     {count}
@@ -186,11 +188,11 @@ export function AppSidebar({ variant = 'desktop', onNavigate }: AppSidebarProps)
             <button
               type="button"
               className={cn(
-                'flex w-full items-center gap-2.5 rounded-md p-1.5 text-left transition-colors hover:bg-sidebar-accent',
+                'flex w-full items-center gap-2.5 rounded-md p-1.5 text-left transition-colors hover:bg-primary/8',
                 collapsed && 'justify-center',
               )}
             >
-              <Avatar className="size-8">
+              <Avatar className="size-10">
                 <AvatarFallback>{currentUser.initials}</AvatarFallback>
               </Avatar>
               {!collapsed ? (

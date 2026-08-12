@@ -3,13 +3,13 @@ import { formatCNPJ } from '@/lib/format'
 import { fixCNPJ } from '@/lib/validators'
 import type { AppNotification, AppUser, CompanyProfile, OperationSettings } from '@/types'
 
-const AURORA_CNPJ = formatCNPJ(fixCNPJ('32.884.115/0001-70'))
+const AC_CLEAN_CNPJ = formatCNPJ(fixCNPJ('32.884.115/0001-70'))
 
 export const currentUser: AppUser = {
   id: 'usr-001',
   name: 'Camila Prado',
   role: 'Proprietária',
-  email: 'camila@lavanderiaaurora.com.br',
+  email: 'camila@acclean.com.br',
   initials: 'CP',
 }
 
@@ -19,22 +19,22 @@ export const teamMembers: AppUser[] = [
     id: 'usr-002',
     name: 'Douglas Reis',
     role: 'Produção',
-    email: 'douglas@lavanderiaaurora.com.br',
+    email: 'douglas@acclean.com.br',
     initials: 'DR',
   },
   {
     id: 'usr-003',
     name: 'Vanessa Lopes',
     role: 'Atendente',
-    email: 'vanessa@lavanderiaaurora.com.br',
+    email: 'vanessa@acclean.com.br',
     initials: 'VL',
   },
 ]
 
 export const companyProfile: CompanyProfile = {
-  tradeName: 'Lavanderia Aurora',
-  legalName: 'Aurora Serviços de Lavanderia Ltda',
-  cnpj: AURORA_CNPJ,
+  tradeName: 'AC Clean Lavanderia',
+  legalName: 'AC Clean Serviços de Lavanderia Ltda',
+  cnpj: AC_CLEAN_CNPJ,
   municipalRegistration: '4.882.109-3',
   phone: '(11) 3567-2210',
   address: 'Rua Barão do Triunfo, 428 · Brooklin',
@@ -52,7 +52,7 @@ export const defaultSettings: OperationSettings = {
   autoIssueInvoice: true,
   compactDensity: false,
   sidebarCollapsedByDefault: false,
-  pixKey: AURORA_CNPJ,
+  pixKey: AC_CLEAN_CNPJ,
 }
 
 export function buildNotifications(): AppNotification[] {

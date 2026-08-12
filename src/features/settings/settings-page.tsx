@@ -1,5 +1,5 @@
 import * as React from 'react'
-import { Building2, Clock, Printer, Save, Users } from 'lucide-react'
+import { Accessibility, Building2, Check, Clock, Printer, Save, Users } from 'lucide-react'
 import { toast } from 'sonner'
 import { Button } from '@/components/ui/button'
 import { Badge } from '@/components/ui/badge'
@@ -12,6 +12,7 @@ import { useDataStore } from '@/store/data-store'
 import { useUIStore } from '@/store/ui-store'
 import { teamMembers } from '@/data/system'
 import { formatCNPJ, formatPhone } from '@/lib/format'
+import { cn } from '@/lib/utils'
 import type { CompanyProfile } from '@/types'
 
 function Section({
@@ -69,6 +70,8 @@ export function SettingsPage() {
   const updateCompany = useDataStore((state) => state.updateCompany)
   const updateSettings = useDataStore((state) => state.updateSettings)
   const setSidebarCollapsed = useUIStore((state) => state.setSidebarCollapsed)
+  const textScale = useUIStore((state) => state.textScale)
+  const setTextScale = useUIStore((state) => state.setTextScale)
 
   const [draft, setDraft] = React.useState<CompanyProfile>(company)
   const dirty = JSON.stringify(draft) !== JSON.stringify(company)
@@ -101,6 +104,7 @@ export function SettingsPage() {
         <TabsList>
           <TabsTrigger value="empresa">Empresa</TabsTrigger>
           <TabsTrigger value="operacao">Operação</TabsTrigger>
+          <TabsTrigger value="acessibilidade">Leitura</TabsTrigger>
           <TabsTrigger value="equipe">Equipe</TabsTrigger>
         </TabsList>
 
@@ -280,6 +284,79 @@ export function SettingsPage() {
                   setSidebarCollapsed(value)
                 }}
               />
+            </div>
+          </Section>
+        </TabsContent>
+
+        <TabsContent value="acessibilidade">
+          <Section
+            title="Leitura e facilidade de uso"
+            description="Ajuste o sistema para enxergar textos e ações com mais conforto"
+            icon={Accessibility}
+          >
+            <div className="space-y-4">
+              <div>
+                <p className="font-semibold">Tamanho dos textos</p>
+                <p className="mt-1 text-sm text-muted-foreground">
+                  A escolha é salva neste computador e aplicada em todas as telas.
+                </p>
+              </div>
+
+              <div className="grid gap-3 sm:grid-cols-2" role="radiogroup" aria-label="Tamanho dos textos">
+                {([
+                  {
+                    value: 'comfortable' as const,
+                    title: 'Confortável',
+                    description: 'Texto principal com 16 px e controles espaçosos.',
+                    sampleSize: '16px',
+                  },
+                  {
+                    value: 'large' as const,
+                    title: 'Grande',
+                    description: 'Texto principal com 18 px para facilitar a leitura.',
+                    sampleSize: '18px',
+                  },
+                ]).map((option) => {
+                  const selected = textScale === option.value
+                  return (
+                    <button
+                      key={option.value}
+                      type="button"
+                      role="radio"
+                      aria-checked={selected}
+                      onClick={() => setTextScale(option.value)}
+                      className={cn(
+                        'relative min-h-32 rounded-lg border p-4 text-left transition-[border-color,background-color,box-shadow] hover:border-primary/45 hover:bg-primary/5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring',
+                        selected
+                          ? 'border-primary bg-primary/8 shadow-[inset_0_0_0_1px_hsl(var(--primary)/0.16)]'
+                          : 'border-border bg-background/45',
+                      )}
+                    >
+                      <span className="flex items-center justify-between gap-3">
+                        <span className="font-semibold text-foreground">{option.title}</span>
+                        {selected ? (
+                          <span className="grid size-7 place-items-center rounded-full bg-primary text-primary-foreground">
+                            <Check className="size-4" strokeWidth={3} />
+                          </span>
+                        ) : null}
+                      </span>
+                      <span
+                        className="mt-3 block font-semibold leading-relaxed text-foreground"
+                        style={{ fontSize: option.sampleSize }}
+                      >
+                        Exemplo de leitura
+                      </span>
+                      <span className="mt-1 block text-sm text-muted-foreground">
+                        {option.description}
+                      </span>
+                    </button>
+                  )
+                })}
+              </div>
+
+              <p className="rounded-md border border-info/25 bg-info/8 p-3 text-sm text-info">
+                Botões, campos e seletores também foram ampliados para reduzir cliques errados no atendimento.
+              </p>
             </div>
           </Section>
         </TabsContent>

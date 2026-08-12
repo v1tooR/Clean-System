@@ -101,13 +101,28 @@ export function NewOrderPage() {
 
   const showSummaryAside = ['pecas', 'servicos', 'resumo'].includes(step.id)
   const isLastStep = step.id === 'fim'
+  const nextLabel = {
+    cliente: 'Ir para peças',
+    pecas: 'Definir serviços',
+    servicos: 'Revisar atendimento',
+    resumo: 'Escolher pagamento',
+    pagamento: 'Concluir e criar OS',
+    nota: 'Revisar comprovante',
+    comprovante: 'Finalizar atendimento',
+    fim: 'Concluído',
+  }[step.id]
 
   return (
     <div className="mx-auto w-full max-w-5xl space-y-5">
       {/* Stepper */}
-      <div className="rounded-lg border border-border bg-card px-3 py-2.5">
+      <div className="rounded-lg border border-border bg-card px-4 py-3.5 shadow-xs">
         <Stepper
-          steps={steps.map((item) => ({ id: item.id, label: item.label }))}
+          steps={steps.map((item) => ({
+            id: item.id,
+            label: item.label,
+            group: item.group,
+            description: item.description,
+          }))}
           current={flow.stepIndex}
           furthest={flow.createdOrder ? flow.stepIndex : flow.furthest}
           onStepClick={flow.createdOrder ? undefined : flow.goTo}
@@ -197,7 +212,7 @@ export function NewOrderPage() {
 
       {/* Navegação */}
       {!isLastStep ? (
-        <div className="sticky bottom-0 flex items-center justify-between gap-3 rounded-lg border border-border bg-card/95 p-3 backdrop-blur">
+        <div className="sticky bottom-0 flex items-end justify-between gap-3 rounded-lg border border-border bg-card/95 p-3 shadow-md backdrop-blur">
           <Button
             variant="ghost"
             onClick={flow.back}
@@ -208,13 +223,15 @@ export function NewOrderPage() {
             Voltar
           </Button>
 
-          <div className="flex items-center gap-3">
+          <div className="ml-auto flex min-w-0 flex-col items-end gap-2">
             {blocked ? (
-              <p className="hidden text-[12px] text-muted-foreground sm:block">{blocked}</p>
+              <p className="max-w-sm text-right text-[12px] font-medium text-warning" role="status">
+                Para avançar: {blocked}
+              </p>
             ) : null}
             <Button onClick={handleNext} disabled={!!blocked} className="gap-2" size="lg">
-              {step.id === 'pagamento' && !flow.createdOrder ? 'Concluir atendimento' : 'Continuar'}
-              {step.id === 'pagamento' && !flow.createdOrder ? (
+              {nextLabel}
+              {step.id === 'pagamento' || step.id === 'comprovante' ? (
                 <Check className="size-4" />
               ) : (
                 <ArrowRight className="size-4" />

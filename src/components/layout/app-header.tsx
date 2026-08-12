@@ -13,6 +13,8 @@ import {
   DropdownMenuTrigger,
 } from '@/components/ui/dropdown-menu'
 import { NotificationPopover } from './notification-popover'
+import { ThemeToggle } from './theme-toggle'
+import { TextSizeToggle } from './text-size-toggle'
 import { useHeaderSlot } from './header-slot'
 import { pageMeta } from '@/config/navigation'
 import { useUIStore } from '@/store/ui-store'
@@ -28,14 +30,14 @@ export function AppHeader() {
   const setMobileNavOpen = useUIStore((state) => state.setMobileNavOpen)
   const setCommandOpen = useUIStore((state) => state.setCommandOpen)
 
-  const fallback = pageMeta[location.pathname] ?? { title: 'Clean System', description: '' }
+  const fallback = pageMeta[location.pathname] ?? { title: 'AC Clean', description: '' }
   const title = config.title ?? fallback.title
   const description = config.description ?? fallback.description
   const isNewOrder = location.pathname === '/atendimentos/novo'
 
   return (
-    <header className="sticky top-0 z-30 border-b border-border bg-background/85 backdrop-blur-md">
-      <div className="flex h-14 items-center gap-3 px-4 lg:px-6">
+    <header className="sticky top-0 z-30 border-b border-border/80 bg-background/82 shadow-xs backdrop-blur-xl">
+      <div className="flex h-16 items-center gap-1.5 px-3 sm:gap-3 sm:px-4 lg:px-6">
         <Button
           variant="ghost"
           size="icon"
@@ -81,7 +83,7 @@ export function AppHeader() {
           type="button"
           onClick={() => setCommandOpen(true)}
           className={cn(
-            'hidden h-9 w-56 items-center gap-2 rounded-md border border-border bg-card/60 px-3 text-[13px] text-muted-foreground transition-colors hover:border-border/90 hover:bg-card lg:flex xl:w-72',
+            'hidden h-11 w-56 items-center gap-2 rounded-md border border-border bg-card/60 px-3 text-[13px] text-muted-foreground transition-[border-color,background-color,color,box-shadow] hover:border-primary/35 hover:bg-primary/7 hover:text-foreground hover:shadow-xs lg:flex xl:w-72',
           )}
         >
           <Search className="size-3.5" />
@@ -94,13 +96,15 @@ export function AppHeader() {
         <Button
           variant="ghost"
           size="icon"
-          className="lg:hidden"
+          className="hidden sm:inline-flex lg:hidden"
           onClick={() => setCommandOpen(true)}
           aria-label="Buscar"
         >
           <Search className="size-4" />
         </Button>
 
+        <TextSizeToggle />
+        <ThemeToggle />
         <NotificationPopover />
 
         {config.actions ? (
@@ -119,7 +123,7 @@ export function AppHeader() {
               className="ml-1 hidden rounded-full transition-opacity hover:opacity-85 focus-visible:ring-2 focus-visible:ring-ring md:block"
               aria-label="Menu do usuário"
             >
-              <Avatar className="size-8">
+              <Avatar className="size-10">
                 <AvatarFallback>{currentUser.initials}</AvatarFallback>
               </Avatar>
             </button>

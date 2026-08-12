@@ -47,11 +47,11 @@ export function DashboardPage() {
 
   return (
     <div className="space-y-5">
-      <div className="flex flex-wrap items-baseline justify-between gap-2">
+      <div className="flex flex-col gap-1 sm:flex-row sm:flex-wrap sm:items-baseline sm:justify-between sm:gap-2">
         <p className="text-[13px] text-muted-foreground first-letter:uppercase">
           {dateLong(new Date())}
         </p>
-        <p className="text-[12px] text-muted-foreground">
+        <p className="text-[12px] text-muted-foreground sm:text-right">
           {number(metrics.ordersInProcess)} atendimentos em aberto ·{' '}
           {number(metrics.readyForPickup)} aguardando retirada
         </p>

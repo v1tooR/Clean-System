@@ -1,3 +1,19 @@
+@font-face {
+  font-family: 'Urbanist';
+  src: url('../assets/fonts/Urbanist-VariableFont_wght.ttf') format('truetype');
+  font-style: normal;
+  font-weight: 100 900;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Urbanist';
+  src: url('../assets/fonts/Urbanist-Italic-VariableFont_wght.ttf') format('truetype');
+  font-style: italic;
+  font-weight: 100 900;
+  font-display: swap;
+}
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -8,70 +24,153 @@
    ========================================================================== */
 
 @layer base {
-  :root,
-  .dark {
+  :root {
+    /* Leitura confortável — escala mínima pensada para uso contínuo no balcão */
+    --font-caption: 0.875rem;
+    --font-body: 1rem;
+    --font-heading: 1.125rem;
+    --font-title: 1.375rem;
+    --font-title-lg: 1.625rem;
+    --font-metric: 2rem;
+    --font-metric-lg: 2.375rem;
+
     /* Superfícies */
-    --background: 240 9% 5%;
-    --foreground: 240 15% 96%;
+    --background: 0 0% 100%;
+    --foreground: 199 38% 18%;
 
-    --card: 240 8% 7.5%;
-    --card-foreground: 240 15% 96%;
-    --card-elevated: 240 8% 10%;
+    --card: 0 0% 100%;
+    --card-foreground: 199 38% 18%;
+    --card-elevated: 198 55% 97%;
 
-    --popover: 240 9% 9%;
-    --popover-foreground: 240 15% 96%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 199 38% 18%;
 
-    --muted: 240 6% 13%;
-    --muted-foreground: 240 6% 62%;
+    --muted: 198 45% 94%;
+    --muted-foreground: 198 24% 34%;
 
-    --accent: 240 6% 15%;
-    --accent-foreground: 240 15% 96%;
+    --accent: 196 72% 92%;
+    --accent-foreground: 198 42% 18%;
 
-    --secondary: 240 6% 13%;
-    --secondary-foreground: 240 12% 90%;
+    --secondary: 198 44% 95%;
+    --secondary-foreground: 198 38% 23%;
 
     /* Marca — vinho / rose */
-    --primary: 344 72% 45%;
+    --primary: 196 88% 32%;
     --primary-foreground: 0 0% 100%;
-    --primary-muted: 344 60% 16%;
+    --primary-muted: 196 72% 91%;
+    --brand-deep: 196 89% 32%;
+    --brand-cyan: 195 88% 45%;
+    --brand-sky: 196 72% 70%;
+    --brand-ice: 198 72% 96%;
 
     /* Semânticas */
-    --success: 152 55% 42%;
+    --success: 158 65% 31%;
     --success-foreground: 0 0% 100%;
-    --warning: 38 92% 52%;
+    --warning: 36 92% 33%;
     --warning-foreground: 40 90% 8%;
-    --destructive: 0 70% 50%;
+    --destructive: 0 72% 45%;
     --destructive-foreground: 0 0% 100%;
-    --info: 208 88% 56%;
+    --info: 209 78% 45%;
     --info-foreground: 0 0% 100%;
 
     /* Contornos */
-    --border: 240 6% 15%;
-    --input: 240 6% 18%;
-    --ring: 344 72% 52%;
+    --border: 198 30% 87%;
+    --input: 198 24% 75%;
+    --ring: 196 88% 36%;
 
     /* Sidebar */
-    --sidebar: 240 10% 6.5%;
-    --sidebar-foreground: 240 10% 72%;
-    --sidebar-accent: 240 7% 12%;
-    --sidebar-border: 240 7% 12%;
+    --sidebar: 198 70% 98%;
+    --sidebar-foreground: 198 28% 31%;
+    --sidebar-accent: 196 70% 92%;
+    --sidebar-border: 198 32% 87%;
 
     /* Gráficos */
-    --chart-1: 344 72% 52%;
-    --chart-2: 208 88% 60%;
-    --chart-3: 152 55% 48%;
-    --chart-4: 38 92% 58%;
-    --chart-5: 268 60% 62%;
+    --chart-1: 196 88% 36%;
+    --chart-2: 209 78% 52%;
+    --chart-3: 158 65% 36%;
+    --chart-4: 36 92% 43%;
+    --chart-5: 221 70% 55%;
+    --canvas-end: 0 0% 100%;
 
     /* Forma */
     --radius: 0.65rem;
 
     /* Elevação */
-    --shadow-xs: 0 1px 2px 0 hsl(0 0% 0% / 0.28);
-    --shadow-sm: 0 1px 3px 0 hsl(0 0% 0% / 0.32), 0 1px 2px -1px hsl(0 0% 0% / 0.28);
-    --shadow-md: 0 4px 14px -4px hsl(0 0% 0% / 0.45);
-    --shadow-lg: 0 18px 40px -12px hsl(0 0% 0% / 0.6);
-    --shadow-glow: 0 0 0 1px hsl(var(--primary) / 0.35), 0 8px 28px -10px hsl(var(--primary) / 0.5);
+    --shadow-xs: 0 1px 2px 0 hsl(199 50% 20% / 0.07);
+    --shadow-sm: 0 1px 3px 0 hsl(199 50% 20% / 0.09), 0 1px 2px -1px hsl(199 50% 20% / 0.07);
+    --shadow-md: 0 10px 28px -10px hsl(199 50% 20% / 0.2);
+    --shadow-lg: 0 24px 56px -18px hsl(199 50% 20% / 0.28);
+    --shadow-glow: 0 0 0 1px hsl(var(--primary) / 0.2), 0 10px 30px -14px hsl(var(--primary) / 0.3);
+  }
+
+  .dark {
+    --background: 200 55% 7%;
+    --foreground: 198 42% 96%;
+
+    --card: 200 48% 9%;
+    --card-foreground: 198 42% 96%;
+    --card-elevated: 199 44% 12%;
+
+    --popover: 199 48% 11%;
+    --popover-foreground: 198 42% 96%;
+
+    --muted: 199 40% 15%;
+    --muted-foreground: 197 22% 76%;
+
+    --accent: 196 50% 17%;
+    --accent-foreground: 195 55% 94%;
+
+    --secondary: 199 42% 14%;
+    --secondary-foreground: 196 42% 91%;
+
+    --primary: 195 88% 45%;
+    --primary-foreground: 200 55% 7%;
+    --primary-muted: 196 68% 17%;
+    --brand-deep: 196 89% 37%;
+    --brand-cyan: 195 88% 45%;
+    --brand-sky: 196 72% 70%;
+    --brand-ice: 198 72% 93%;
+
+    --success: 158 58% 45%;
+    --success-foreground: 160 75% 7%;
+    --warning: 38 92% 52%;
+    --warning-foreground: 40 90% 8%;
+    --destructive: 0 70% 50%;
+    --destructive-foreground: 0 0% 100%;
+    --info: 209 86% 63%;
+    --info-foreground: 211 70% 10%;
+
+    --border: 198 36% 18%;
+    --input: 198 33% 22%;
+    --ring: 195 88% 52%;
+
+    --sidebar: 200 60% 6%;
+    --sidebar-foreground: 197 24% 78%;
+    --sidebar-accent: 196 55% 14%;
+    --sidebar-border: 198 40% 14%;
+
+    --chart-1: 195 88% 48%;
+    --chart-2: 196 72% 70%;
+    --chart-3: 158 58% 50%;
+    --chart-4: 38 92% 58%;
+    --chart-5: 221 75% 68%;
+    --canvas-end: 200 56% 6%;
+
+    --shadow-xs: 0 1px 2px 0 hsl(202 80% 2% / 0.28);
+    --shadow-sm: 0 1px 3px 0 hsl(202 80% 2% / 0.34), 0 1px 2px -1px hsl(202 80% 2% / 0.28);
+    --shadow-md: 0 8px 22px -8px hsl(202 80% 2% / 0.58);
+    --shadow-lg: 0 22px 52px -16px hsl(202 80% 2% / 0.72);
+    --shadow-glow: 0 0 0 1px hsl(var(--primary) / 0.28), 0 10px 30px -12px hsl(var(--primary) / 0.58);
+  }
+
+  html[data-text-scale='large'] {
+    --font-caption: 1rem;
+    --font-body: 1.125rem;
+    --font-heading: 1.25rem;
+    --font-title: 1.625rem;
+    --font-title-lg: 1.875rem;
+    --font-metric: 2.375rem;
+    --font-metric-lg: 2.75rem;
   }
 
   * {
@@ -80,12 +179,28 @@
 
   html {
     -webkit-tap-highlight-color: transparent;
+    color-scheme: light;
+  }
+
+  html.dark {
+    color-scheme: dark;
   }
 
   body {
-    @apply bg-background text-foreground antialiased;
+    @apply bg-background font-sans text-foreground antialiased;
     font-feature-settings: 'cv02', 'cv03', 'cv04', 'ss01';
+    font-size: var(--font-body);
+    font-weight: 450;
+    line-height: 1.5;
     text-rendering: optimizeLegibility;
+  }
+
+  html.theme-transition *,
+  html.theme-transition *::before,
+  html.theme-transition *::after {
+    transition-property: color, background-color, border-color, box-shadow, fill, stroke !important;
+    transition-duration: 220ms !important;
+    transition-timing-function: ease-out !important;
   }
 
   /* Tipografia numérica tabular para valores e tabelas */
@@ -112,7 +227,7 @@
     background-clip: content-box;
   }
   ::-webkit-scrollbar-thumb:hover {
-    background: hsl(240 6% 25%);
+    background: hsl(var(--primary) / 0.38);
     background-clip: content-box;
   }
 
@@ -125,12 +240,14 @@
   /* Textura sutil de fundo do shell — evita "cinza chapado" */
   .app-canvas {
     background-image:
-      radial-gradient(60rem 40rem at 12% -10%, hsl(var(--primary) / 0.07), transparent 60%),
-      radial-gradient(50rem 30rem at 100% 0%, hsl(var(--info) / 0.05), transparent 55%);
+      radial-gradient(62rem 40rem at 8% -12%, hsl(var(--brand-cyan) / 0.1), transparent 58%),
+      radial-gradient(52rem 34rem at 102% -4%, hsl(var(--brand-sky) / 0.07), transparent 58%),
+      linear-gradient(180deg, hsl(var(--background)), hsl(var(--canvas-end)));
+    background-attachment: local;
   }
 
   .surface {
-    @apply rounded-lg border border-border bg-card;
+    @apply rounded-lg border border-border bg-card shadow-xs;
   }
 
   .surface-elevated {
@@ -160,6 +277,17 @@
   }
 }
 
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    scroll-behavior: auto !important;
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
 @layer utilities {
   .no-scrollbar::-webkit-scrollbar {
     display: none;
@@ -167,6 +295,51 @@
   .no-scrollbar {
     -ms-overflow-style: none;
     scrollbar-width: none;
+  }
+
+  /*
+   * Compatibilidade com telas legadas que ainda usam tamanhos fixos.
+   * A impressão permanece com sua escala documental própria.
+   */
+  @media screen {
+    html .text-\[9px\],
+    html .text-\[10px\],
+    html .text-\[11px\],
+    html .text-\[12px\],
+    html .text-\[13px\] {
+      font-size: var(--font-caption);
+      line-height: 1.45;
+    }
+
+    html .text-\[14px\],
+    html .text-\[15px\],
+    html .text-\[17px\] {
+      font-size: var(--font-body);
+      line-height: 1.5;
+    }
+
+    html .text-\[18px\],
+    html .text-\[20px\] {
+      font-size: var(--font-heading);
+      line-height: 1.4;
+    }
+
+    html .text-\[22px\],
+    html .text-\[24px\] {
+      font-size: var(--font-title);
+      line-height: 1.3;
+    }
+
+    html .text-\[26px\],
+    html .text-\[28px\] {
+      font-size: var(--font-metric);
+      line-height: 1.15;
+    }
+
+    html .text-\[34px\] {
+      font-size: var(--font-metric-lg);
+      line-height: 1.1;
+    }
   }
 }
 

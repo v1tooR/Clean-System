@@ -55,10 +55,10 @@ export function PaymentMethodSelector({
             type="button"
             onClick={() => onChange(option.id)}
             className={cn(
-              'group relative flex items-center gap-3 rounded-lg border p-3 text-left transition-all duration-150',
+              'group relative flex items-center gap-3 rounded-lg border p-3 text-left shadow-xs transition-[transform,border-color,background-color,box-shadow] duration-150',
               active
                 ? 'border-primary bg-primary/8 shadow-glow'
-                : 'border-border bg-card hover:border-border/90 hover:bg-card-elevated',
+                : 'border-border bg-card hover:-translate-y-0.5 hover:border-primary/30 hover:bg-card-elevated hover:shadow-md',
             )}
           >
             <span

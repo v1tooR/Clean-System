@@ -21,9 +21,9 @@ export const SearchInput = React.forwardRef<HTMLInputElement, SearchInputProps>(
           onChange={(event) => onChange(event.target.value)}
           placeholder={placeholder ?? 'Buscar…'}
           className={cn(
-            'h-9 w-full rounded-md border border-input bg-background/40 pl-9 pr-9 text-sm shadow-xs transition-colors',
+            'h-11 w-full rounded-md border border-input bg-background/55 pl-10 pr-10 text-sm shadow-xs transition-[border-color,box-shadow,background-color]',
             'placeholder:text-muted-foreground/70',
-            'focus-visible:border-primary/60 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/25',
+            'hover:border-primary/30 focus-visible:bg-background/80 focus-visible:border-primary/70 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/25',
             className,
           )}
           {...props}
@@ -36,7 +36,7 @@ export const SearchInput = React.forwardRef<HTMLInputElement, SearchInputProps>(
               onChange('')
               onClear?.()
             }}
-            className="absolute right-2 top-1/2 grid size-6 -translate-y-1/2 place-items-center rounded text-muted-foreground transition-colors hover:bg-accent hover:text-foreground"
+            className="absolute right-2 top-1/2 grid size-6 -translate-y-1/2 place-items-center rounded text-muted-foreground transition-colors hover:bg-primary/10 hover:text-primary"
           >
             <X className="size-3.5" />
           </button>

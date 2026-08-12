@@ -25,7 +25,7 @@ function Panel({
   className?: string
 }) {
   return (
-    <section className={cn('flex flex-col rounded-lg border border-border bg-card', className)}>
+    <section className={cn('flex flex-col rounded-lg border border-border bg-card shadow-xs', className)}>
       <header className="flex items-center justify-between gap-2 border-b border-border px-4 py-3">
         <div className="min-w-0">
           <h2 className="text-[13px] font-semibold">{title}</h2>
@@ -43,7 +43,7 @@ function OrderRow({ order, onOpen, right }: { order: Order; onOpen: () => void; 
     <button
       type="button"
       onClick={onOpen}
-      className="flex w-full items-center gap-3 rounded-md px-2 py-2 text-left transition-colors hover:bg-accent/50"
+      className="group flex w-full items-center gap-3 rounded-md px-2 py-2 text-left transition-colors hover:bg-primary/7"
     >
       <span className="tabular w-11 shrink-0 text-[12px] font-semibold text-muted-foreground">
         {order.code}
@@ -113,7 +113,7 @@ export function AttentionPanel({ loading }: { loading?: boolean }) {
                 <button
                   type="button"
                   onClick={item.onClick}
-                  className="flex w-full items-center gap-3 rounded-md p-2 text-left transition-colors hover:bg-accent/50"
+                  className="group flex w-full items-center gap-3 rounded-md p-2 text-left transition-colors hover:bg-primary/7"
                 >
                   <span className={cn('grid size-8 shrink-0 place-items-center rounded-md', item.tone)}>
                     <Icon className="size-4" />
@@ -124,7 +124,7 @@ export function AttentionPanel({ loading }: { loading?: boolean }) {
                       {item.hint}
                     </span>
                   </span>
-                  <ArrowRight className="size-3.5 shrink-0 text-muted-foreground" />
+                  <ArrowRight className="size-3.5 shrink-0 text-muted-foreground transition-transform group-hover:translate-x-0.5 group-hover:text-primary" />
                 </button>
               </li>
             )

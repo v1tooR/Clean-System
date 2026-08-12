@@ -208,8 +208,8 @@ export function DataTable<TData>({
                       : undefined
                   }
                   className={cn(
-                    onRowClick && 'cursor-pointer hover:bg-accent/40 focus-visible:bg-accent/40',
-                    compact ? '[&_td]:py-1.5' : '[&_td]:py-3',
+                    onRowClick && 'cursor-pointer hover:bg-primary/7 focus-visible:bg-primary/8',
+                    compact ? '[&_td]:py-2.5' : '[&_td]:py-4',
                   )}
                 >
                   {row.getVisibleCells().map((cell) => (

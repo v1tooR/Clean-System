@@ -63,7 +63,7 @@ function Column({
         ref={setNodeRef}
         className={cn(
           'flex min-h-[180px] flex-1 flex-col gap-2 rounded-lg border border-dashed p-2 transition-colors',
-          isOver ? 'border-primary/60 bg-primary/5' : 'border-border/70 bg-card/30',
+          isOver ? 'border-primary/70 bg-primary/7 shadow-[inset_0_0_24px_hsl(var(--primary)/0.04)]' : 'border-border/70 bg-card/30',
         )}
       >
         <AnimatePresence initial={false} mode="popLayout">
